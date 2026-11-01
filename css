@@ -1,13 +1,9 @@
-#score {
-    text-align: center;
-}
-
 #game {
     width: 100vw;
     height: 100vh;
     margin: 0;
     position: relative;
-    background-image:url(abcp.png);
+    background-image: url(abcp.png);
     background-size: cover;
     background-position: center;
     overflow: hidden;
@@ -18,31 +14,43 @@
     width: 100px;
     background-image: url("starp.png");
     position: absolute;
-    bottom: 20px;
+    bottom: 0px;
     left: 100px;
     background-size: cover;
 }
+
 #alien {
     height: 100px;
     width: 100px;
     position: absolute;
-    bottom: 20px;
+    bottom: 0px;
     background-image: url("alienpng.png");
     background-size: cover;
-    animation: alien 2s infinite;
+    animation: alien 2s infinite linear;
 }
+
 @keyframes alien {
-    0%{left: 500px;}
-    100%{left: -50px;}
+    0% { left: 1000px; }
+    100% { left: -100px; }
 }
 
 .jump-animation {
-    animation: jump 0.5s;
+    animation: jump 0.6s linear;
 }
 
 @keyframes jump {
-    0%{top: 500px;}
-    50%{top: 150px;}
-    75%{top: 150px;}
-    100%{top: 500px;}
+    0% { bottom: 0px; }
+    50% { bottom: 150px; }
+    75% { bottom: 150px; }
+    100% { bottom: 0px; }
+}
+
+#score {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 30px;
+    font-family: 'Times New Roman', Times, serif;
+    color: white;
+    text-shadow: 2px 2px 4px #000;
 }
