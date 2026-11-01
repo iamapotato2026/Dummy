@@ -1,36 +1,34 @@
 const star = document.getElementById('star');
 const alien = document.getElementById('alien');
 const score = document.getElementById('score');
+let count = 0;
 
 function jump(){
-    star.classList.add('jump-animation');
-    setTimeout(() => {
-        star.classList.remove('jump-animation');
-    }, 750);
+    if (!star.classList.contains('jump-animation')){
+        star.classList.add('jump-animation');
+        setTimeout(() => {
+            star.classList.remove('jump-animation');
+        }, 600);
+    }
 }
 
-document.addEventListener('keypress', () => {
-    if (!star.classList.contains('jump-animation')){
-    jump();
+document.addEventListener('keydown', (event) => {
+    if (event.code === 'Space' || event.key === ' ') {
+        jump();
     }
 });
 
-setInterval(() => {
-    score.innerText++;
-    const starTop = parseInt(window.getComputedStyle(star)
-    .getPropertyValue('top'));
-    const alienLeft = parseInt(window.getComputedStyle(alien)
-    .getPropertyValue('left'));
+let checkDead = setInterval(() => {
+    count++;
+    score.innerText = Math.floor(count / 10);
 
-    if (alienLeft < 0) {
-        alien.style.display = 'none';
-    } else {
-        alien.style.display = '';
-    }
+    let starBottom = parseInt(window.getComputedStyle(star).getPropertyValue('bottom'));
+    let alienLeft = parseInt(window.getComputedStyle(alien).getPropertyValue('left'));
 
-    if (alienLeft < 50 && alienLeft > 0 && starTop > 150) {
-        alert("YOU GOT A SCORE OF: " + score.innerText + 
-        "\n\nPlay again?");
+    if (alienLeft < 180 && alienLeft > 80 && starBottom < 80) {
+        alert("YOU GOT A SCORE OF: " + score.innerText + "\n\nPlay again?");
+        count = 0;
         location.reload();
     }
 }, 50);
+
